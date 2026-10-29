@@ -13,4 +13,14 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("GalagaPlayer"))
+        {
+            if (collision.gameObject.CompareTag("PlayerBullet"))
+                Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }

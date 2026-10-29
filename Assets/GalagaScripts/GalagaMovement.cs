@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GalagaMovement : MonoBehaviour
 {
     public float speed = 5;
 
     public GameObject bullet;
+
+    public Image[] lives;
+    public int LifeCount = 3;
 
     // Update is called once per frame
     void Update()
@@ -38,7 +43,13 @@ public class GalagaMovement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-
+            LifeCount -= 1;
+            if (LifeCount <= 0)
+            {
+                LifeCount = 0;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            lives[LifeCount].enabled = false;
         }
     }
 }
